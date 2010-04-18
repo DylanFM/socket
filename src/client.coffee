@@ -4,7 +4,7 @@ socket.onopen: ->
   console.log "Opened!"
   $("fieldset").fadeIn()
   $("#send").click (event) ->
-    socket.send $("#word").val()
+    socket.send $("#name").val() + ": " + $("#word").val()
 
 socket.onclose: ->
   console.log "Closed!"

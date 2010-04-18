@@ -41,6 +41,6 @@ http.createServer((req, res) ->
   else
     exports.error(res)
     res.end()
-).listen 5678, 'localhost'
+).listen 5678, '10.0.1.55'
 
 sys.puts "Listening on port 5678"

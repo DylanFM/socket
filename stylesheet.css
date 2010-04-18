@@ -50,3 +50,11 @@ a:active, a:hover, a:focus {color:#d45500}
 body {background-color:#efefef}
 
   .container {width:90%;padding:1.5em;margin:0 auto;background-color:#fff;height:100%}
+
+    fieldset {padding:9px;background:#eee}
+      fieldset li:last-child {padding-bottom:0}
+        fieldset label {width:3em;top:-5px;position:relative;text-align:right}
+
+    ul {list-style:none;border-bottom:1px solid #ddd;border-top:1px solid #ddd}
+      ul li {border-bottom:1px solid #ddd;padding:9px 0}
+      ul li:last-child {border-bottom:none}
