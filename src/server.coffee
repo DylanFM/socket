@@ -13,8 +13,6 @@ server: wss.createServer "10.0.1.55", 8080, (socket) ->
 
   socket.addListener "message", (data) ->
     sys.puts "Received: ${data}"
-    socket.send "Hey, you just sent me something!"
-
-  setInterval (-> socket.send("Moo cows")), 10000
+    socket.send "Server received: ${data}"
 
 server.listen()

@@ -1,26 +1,12 @@
-sys: require "sys"
-http: require "http"
-fs: require "fs"
+sys: require("sys")
+app: require("../vendor/sydjs")
 
-# The static file server
-require("http").createServer((req, res) ->
+app.get '/', -> 'index.html'
 
-  sys.puts req.url
+app.get '/stylesheet.css', -> 'stylesheet.css'
+app.get '/client.js', -> 'lib/client.js'
+app.get '/jquery-1.4.2.js', -> 'vendor/jquery-1.4.2.js'
 
-  switch req.url
-    when "/"
-      fs.readFile "index.html", (err, data) ->
-        res.writeHead 200, {"Content-Type": "text/html", "Content-Length": data.length}
-        res.write data
-        res.end()
-    when "/client.js"
-      fs.readFile "lib/client.js", (err, data) ->
-        res.writeHead 200, {"Content-Type": "application/javascript", "Content-Length": data.length}
-        res.write data
-        res.end()
-    else
-      res.writeHead 404, {"Content-Type": "text/plain"}
-      res.write "Not found"
-      res.end()
-
-).listen(4000, "localhost")
+app.error: (res) ->
+  res.writeHead 404, {'Content-Type': 'text/html'}
+  res.write "Custom error: no route matched."
