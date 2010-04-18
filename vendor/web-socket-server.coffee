@@ -1,5 +1,5 @@
 sys: require 'sys'
-net: require 'net'
+net: require 'tcp_old'
 
 class Server
   constructor: (hostname, port, callback) ->
@@ -15,9 +15,6 @@ class Server
       socket.messageData: ''
 
       socket.send: (payload) ->
-
-        sys.puts "Sending ${payload}"
-
         socket.write "\u0000${payload}\uffff"
 
       socket.handleMessageData: (data) ->
@@ -36,8 +33,6 @@ class Server
       socket.handleHandshake: (request) =>
 
         origin: request.match(/\sOrigin: (.*)\s/)[1]
-
-        sys.puts "Handshaking with ${origin}"
 
         socket.write [
           'HTTP/1.1 101 Web Socket Protocol Handshake',
